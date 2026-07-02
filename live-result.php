@@ -49,9 +49,7 @@ if (!$result) {
         }, 10000);
     </script>
 
-    <a href="index.php" class="back-btn">⬅️ Kembali</a>
-
-    <div class="card" style="padding: 25px; background: #fff; border-radius: 18px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+    <div class="card" style="padding: 25px; background: #fff; border-radius: 18px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-top: 20px;">
         <h2 style="color: #2c3e50; margin-bottom: 5px; font-size: 1.6rem;">📢 LIVE RESULT SCREEN</h2>
         <h3 style="color: #16a085; margin-bottom: 5px; font-size: 1.25rem;">Keputusan Semasa Undian Calon</h3>
         <p style="color: #7f8c8d; margin-bottom: 25px; font-size: 0.85rem; font-style: italic;">Auto refresh setiap 10 saat.</p>
@@ -73,11 +71,10 @@ if (!$result) {
             // Kira peratus asal
             $peratus = $total_undi_kat > 0 ? round(($undi_calon / $total_undi_kat) * 100, 1) : 0;
 
-            // FIX: Sekat peratusan supaya TIDAK BOLEH lebih daripada 100%
+            // Sekat peratusan supaya TIDAK BOLEH lebih daripada 100%
             if ($peratus > 100) {
                 $peratus = 100;
             }
-            // Jika undian maksimum tapi data pelik, kita default kan ke 100%
             if ($undi_calon > 0 && $total_undi_kat == 0) {
                 $peratus = 100;
             }
@@ -115,7 +112,6 @@ if (!$result) {
 
                 <!-- Progress Bar Grafik Bergerak -->
                 <div class="bar-track" style="height: 20px; background: #edf2f7; border-radius: 999px;">
-                    <!-- CSS width dikawal oleh $peratus yang dah dilaunkan max 100% -->
                     <div class="bar-fill" style="width: <?= $peratus ?>%; height: 100%; border-radius: 999px; font-size: 11px; line-height: 20px; text-align: right; padding-right: 15px; font-weight: bold; transition: width 0.6s ease-in-out;">
                         <?= $peratus > 8 ? $peratus . '%' : '' ?>
                     </div>
