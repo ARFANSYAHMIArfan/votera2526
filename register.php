@@ -78,12 +78,15 @@ if (isset($_POST['register'])) {
     );
 
     if ($stmt->execute()) {
-        $msg = "<div class='alert success'>
-                    Pendaftaran berjaya! ID Pelajar anda ialah <b>$newId</b>
-                </div>";
+        // Menggunakan Alert Box JavaScript dan redirect ke login.php
+        echo "<script>
+                alert('Pendaftaran berjaya! ID Pelajar anda ialah: $newId');
+                window.location.href = 'login.php';
+              </script>";
+        exit();
     } else {
         $msg = "<div class='alert error'>
-                    Pendaftaran gagal.
+                    Pendaftaran gagal. Sila cuba lagi.
                 </div>";
     }
 }

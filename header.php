@@ -12,7 +12,7 @@
 <body>
 <div class="topbar">
     <div class="brand">VOTERA2526</div>
-    <div>
+    <div class="nav-links" style="display: inline-block;">
         <a href="index.php">Home</a>
 
         <?php if (isset($_SESSION['admin_id'])): ?>
@@ -30,9 +30,28 @@
             <a href="admin-login.php">Log Masuk Pentadbir</a>
         <?php endif; ?>
 
-
-    </a>    
-</div>
+        <?php 
+        // 1. Ambil nama fail semasa
+        $current_page = basename($_SERVER['PHP_SELF']); 
+        
+        // 2. Senarai halaman pengecualian (Butang kembali TIDAK akan muncul di sini)
+        $excluded_pages = ['index.php', 'login.php', 'admin-login.php', 'signup.php', 'register.php'];
+        
+        // 3. Tetapkan logik hala tuju butang kembali
+        $back_url = "javascript:history.back()";
+        if ($current_page === 'calon-edit.php') {
+            $back_url = "calon-senarai.php";
+        }
+        
+        // 4. Paparkan butang jika bukan dalam senarai pengecualian
+        if (!in_array($current_page, $excluded_pages)): 
+        ?>
+            <span class="back-button-wrap" style="margin-left: 15px; display: inline-block;">
+                <a href="<?= $back_url ?>" class="back-btn">
+                    ← Kembali
+                </a>    
+            </span>
+        <?php endif; ?>
     </div>
 </div>
 <div class="container">
